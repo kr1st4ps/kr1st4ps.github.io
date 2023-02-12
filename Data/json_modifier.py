@@ -19,13 +19,15 @@ elif action == "add":
             "name": name,
             "price": None,
             "price plus": None,
-            "best price": None
+            "best price": None,
+            "base price": None
         }
     else:
         new_data = {
             "name": name,
             "price": None,
-            "best price": None
+            "best price": None,
+            "base price": None,
         }
     console_games.append(new_data)
 
