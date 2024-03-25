@@ -9,6 +9,10 @@ def load_data(file_path):
     except FileNotFoundError:
         return {}
 
+script_path = 'git.sh'
+file_path = 'Data/games_list.json'
+data = load_data(file_path)
+
 def save_data(file_path, data):
     with open(file_path, 'w') as file:
         json.dump(data, file, indent=2)
@@ -30,16 +34,20 @@ def show_games():
             print(f" - {game}")
         print()
 
-script_path = 'git.sh'
-file_path = 'Data/games_list.json'
-data = load_data(file_path)
+def sort_json(data):
+    temp = data.items()
+    data = {key: sorted(value) for key, value in temp}
+
+    return data
+
 
 while True:
     print("\nOptions:")
     print("1. Add game")
     print("2. Remove game")
     print("3. Show games")
-    print("4. Save and exit")
+    print("4. Sort JSON")
+    print("5. Save and exit")
 
     choice = input("Choose an option (1/2/3/4): ")
 
@@ -58,6 +66,9 @@ while True:
         show_games()
 
     elif choice == '4':
+        data = sort_json(data)
+
+    elif choice == '5':
         save_data(file_path, data)
         print("Data saved. Commiting...")
         try:
